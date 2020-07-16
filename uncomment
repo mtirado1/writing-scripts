@@ -1,0 +1,3 @@
+#!/bin/sh
+# Removes markdown comments (lines that start with '@@')
+sed -e '/^\@\@/ d' "$1"

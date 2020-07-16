@@ -1,0 +1,16 @@
+#!/usr/bin/awk -f
+# Prints a list of headers in a markdown file
+BEGIN {	iscode = 0 }
+
+/^[\s]{0,3}[#]{1,6} / && !iscode {
+	last_level = header_level($0);
+	for (i = 0; i < last_level - 1; i++) { printf "    "; }
+	printf("* %s\n", gensub(/^[\s]*[#]+\s*/, "", "g", $0))
+}
+
+/^```[`]*/ || /^~~~[~]*/ { iscode = !iscode; }
+
+function header_level(s) {
+	match(s, /[#]+/);
+	return RLENGTH;
+}

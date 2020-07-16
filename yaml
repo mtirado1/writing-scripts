@@ -1,0 +1,4 @@
+#!/bin/sh
+# Get YAML header from file
+
+awk 'BEGIN {p=0}; /^---/ {if (NR == 1) p=1; else {exit}; next}; /^\.\.\./ {exit}; p {print}' "$1"

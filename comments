@@ -1,0 +1,3 @@
+#!/bin/sh
+# Keeps markdown comments (lines starting with '@@'), but removes the comment tag
+grep '^@@ ' $1 | sed -e 's/^\@\@ //g'

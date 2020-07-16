@@ -1,0 +1,20 @@
+#!/bin/sh
+# Prints the contents of the text under a header section, including the header
+awk -v s="$1" '
+BEGIN {
+	IGNORECASE=1; p=0;
+	search="^##*.*" s ".*";
+	headerlevel=0;
+}
+
+headerlevel != 0 && header_level($0) == headerlevel {exit}
+
+$0 ~ search && headerlevel == 0 {
+	p = 1; headerlevel = header_level($0);
+}
+
+p
+
+function header_level(s) {
+	match(s, /[#]+/); return RLENGTH;
+}' "$2"

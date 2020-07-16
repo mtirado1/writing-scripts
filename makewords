@@ -1,0 +1,3 @@
+#!/bin/sh
+# Returns a list of all alpha words in a file
+tr '[:upper:] ' '[:lower:]\n' < "${1:-/dev/stdin}" | sed 's/[^[:alnum:]]//g; /^\s*$/ d' | sort
