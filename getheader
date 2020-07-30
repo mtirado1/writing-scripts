@@ -17,4 +17,4 @@ p
 
 function header_level(s) {
 	match(s, /[#]+/); return RLENGTH;
-}' "$2"
+}' "${2:-/dev/stdin}"
