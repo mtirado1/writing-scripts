@@ -7,7 +7,7 @@ BEGIN {
 	headerlevel=0;
 }
 
-headerlevel != 0 && header_level($0) == headerlevel {exit}
+headerlevel != 0 && $0 ~ "^#" && header_level($0) < headerlevel {exit}
 
 $0 ~ search && headerlevel == 0 {
 	p = 1; headerlevel = header_level($0);

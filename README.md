@@ -51,4 +51,4 @@ This script prints a markdown-style list with all the headers in a file. Running
 
 Syntax: `getheader HEADER [FILE]`
 
-Prints the contents of the text under the first header section matched by `HEADER`, including the header.
+Prints the contents of the text under the first header section matched by `HEADER`, including the header and other sub-headers.
