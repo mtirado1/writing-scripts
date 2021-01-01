@@ -1,3 +1,3 @@
 #!/bin/sh
 # Removes markdown comments (lines that start with '@@')
-sed '/^\@\@/ d' "${1:-/dev/stdin}"
+sed '/^\@\@/ d' "${@:-/dev/stdin}"
