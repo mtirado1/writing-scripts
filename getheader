@@ -1,20 +1,27 @@
 #!/bin/sh
-# Prints the contents of the text under a header section, including the header
-awk -v s="$1" '
+# Prints the contents of the text under a header section, including the header and subheaders
+search="$1"
+shift
+awk -v s="$search" '
 BEGIN {
-	IGNORECASE=1; p=0;
-	search="^##*.*" s ".*";
-	headerlevel=0;
+	IGNORECASE = 1;
+	p = 0;
+	search = "^##*.*" s ".*";
+	headerlevel = 0;
+	iscode = 0;
 }
 
-headerlevel != 0 && $0 ~ "^#" && header_level($0) < headerlevel {exit}
+/^```[`]*/ || /^~~~[~]*/ { iscode = !iscode; }
 
-$0 ~ search && headerlevel == 0 {
-	p = 1; headerlevel = header_level($0);
+$0 ~ "^#" && header_level($0) <= headerlevel && !iscode {exit}
+
+$0 ~ search && headerlevel == 0 && !iscode {
+	p = 1;
+	headerlevel = header_level($0);
 }
 
 p
 
 function header_level(s) {
 	match(s, /[#]+/); return RLENGTH;
-}' "${2:-/dev/stdin}"
+}' "$@"
