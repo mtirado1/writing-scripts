@@ -1,3 +1,9 @@
 #!/bin/sh
 # Keeps markdown comments (lines starting with '@@'), but removes the comment tag
-grep -h '^@@ ' "$@" | sed -e 's/^\@\@ //g'
+if [ "$1" = "--lines" -o "$1" = "-l" ]; then
+	shift
+	awk '/^@@/ {sub("^@@",""); print NR "\t" $0 }' "$@" 
+else
+	grep -h '^@@ ' "$@" | sed -e 's/^\@\@ //g'
+fi
+
