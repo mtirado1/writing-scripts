@@ -47,10 +47,10 @@ This script prints a markdown-style list with all the headers in a file. Running
     * outline
     * getheader
 * Some examples
-	* Word count
-	* Creating an index
-	* TODO comments
-	* Simple YAML parsing
+    * Word count
+    * Creating an index
+    * TODO comments
+    * Simple YAML parsing
 ```
 
 ## getheader
