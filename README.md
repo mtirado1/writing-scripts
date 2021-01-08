@@ -63,14 +63,16 @@ Prints the contents of the text under the first header section matched by `HEADE
 
 ## Word count
 
+By using `makewords` before `wc`, special symbols are removed (such as header tags and quotes common in markdown files).
+
 ```
 makewords ch01.txt ch02.txt ch03.txt | wc -l
 ```
 
-Unique words can also be calculated using `uniq`
+Unique words can also be calculated using `sort` and `uniq`:
 
 ```
-makewords ch01.txt ch02.txt ch03.txt | uniq | wc -l
+makewords ch01.txt ch02.txt ch03.txt | sort | uniq | wc -l
 ```
 
 ## Creating an index
