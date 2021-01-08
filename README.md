@@ -14,7 +14,7 @@ Example:
 
 @@ This is a markdown comment!
 
-* `comments` will print all comments in a file, removing the comment tag. An additional flag (-l or --lines) will print the line number where the comment is located, along with the comment.
+* `comments` will print all comments in a file, removing the comment tag. An additional flag (`-l` or `--lines`) will print the line number where the comment is located, along with the comment.
 * `uncomment` will remove all the comments from a file.
 
 `uncomment` can be used for processing a markdown file before converting it to another format.
@@ -51,6 +51,7 @@ This script prints a markdown-style list with all the headers in a file. Running
     * Creating an index
     * TODO comments
     * Simple YAML parsing
+    * Reading a long document
 ```
 
 ## getheader
@@ -102,4 +103,17 @@ Basic metadata can be obtained using grep and sed.
 
 ```
 yaml header.md | grep ^title | sed 's/^.*:\s*//'
+```
+
+## Reading a long document
+
+`outline` and `getheader`, as well as [fzf](https://github.com/junegunn/fzf) can be used to read a specific part of a long document.
+
+```sh
+#!/bin/sh
+
+# Gets a header title and removes leading spaces and bullet points
+header="$(outline novel.md | fzf -- tac | sed 's/^\s*\*\s*//')"
+
+getheader "$header" novel.md | less
 ```
