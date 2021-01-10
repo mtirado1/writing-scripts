@@ -30,9 +30,11 @@ uncomment document.md | pandoc > document.html
 
 `rmyaml` will print the file without the header.
 
-## makewords
+## makewords / words
 
-Returns a list of all alphanumeric words in a file (including repetitions).
+`makewords` Returns a list of all alphanumeric words in a file (including repetitions).
+
+`words` only prints the word count of each file given in its arguments
 
 ## outline
 
@@ -43,7 +45,7 @@ This script prints a markdown-style list with all the headers in a file. Running
 * List of Scripts
     * comments / uncomment
     * yaml / rmyaml
-    * makewords
+    * makewords / words
     * outline
     * getheader
 * Some examples
@@ -64,11 +66,9 @@ Prints the contents of the text under the first header section matched by `HEADE
 
 ## Word count
 
-By using `makewords` before `wc`, special symbols are removed (such as header tags and quotes common in markdown files).
+`words` takes care of special symbols (omitting header tags and quotes common in markdown files) it's faster to use it when only the number of words is required.
 
-```
-makewords ch01.txt ch02.txt ch03.txt | wc -l
-```
+`makewords`, can be used to calculate the number of words in a file, however it's less eficcient. It's useful when you need to search for specific words in a file.
 
 Unique words can also be calculated using `sort` and `uniq`:
 
@@ -113,7 +113,7 @@ yaml header.md | grep ^title | sed 's/^.*:\s*//'
 #!/bin/sh
 
 # Gets a header title and removes leading spaces and bullet points
-header="$(outline novel.md | fzf -- tac | sed 's/^\s*\*\s*//')"
+header="$(outline novel.md | fzf --tac | sed 's/^\s*\*\s*//')"
 
 getheader "$header" novel.md | less
 ```

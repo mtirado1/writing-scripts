@@ -1,0 +1,10 @@
+#!/bin/sh
+# Returns the word count of a file, excluding non-alphanumeric characters
+
+if [ "$#" -gt 2 ]; then
+	for f in "$@"; do
+		echo "$(sed 's/[^[:alnum:] ]//g' "$f" | wc -w)\t$f"
+	done
+else
+	sed 's/[^[:alnum:] ]//g' "$@" | wc -w
+fi
