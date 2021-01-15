@@ -8,11 +8,21 @@ All scripts print to standard output and can be used in a pipeline or with multi
 
 ## comments / uncomment
 
-These scripts interpret lines that start with `@@` as a comment.
+These scripts interpret lines that start with `@@ ` as a comment. Note the space.
 
 Example:
 
+```
+...
+
+Regular text
+
 @@ This is a markdown comment!
+
+More text
+
+...
+```
 
 * `comments` will print all comments in a file, removing the comment tag. An additional flag (`-l` or `--lines`) will print the line number where the comment is located, along with the comment.
 * `uncomment` will remove all the comments from a file.
