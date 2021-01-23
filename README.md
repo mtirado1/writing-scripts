@@ -46,6 +46,19 @@ uncomment document.md | pandoc > document.html
 
 `words` only prints the word count of each file given in its arguments
 
+## wordfreq
+
+```
+Syntax:
+
+  wordfreq [FILE...]
+  wordfreq -i IGNORE_FILE [FILE...]
+```
+
+`wordfreq` uses `makewords` to count the number of occurrences of all words in
+one or multiple files. Use the flag `-i` and a file with a list
+of words to ignore in the count.
+
 ## outline
 
 This script prints a markdown-style list with all the headers in a file. Running this script on this file prints:
@@ -56,7 +69,8 @@ This script prints a markdown-style list with all the headers in a file. Running
     * comments / uncomment
     * yaml / rmyaml
     * makewords / words
-    * outline
+    * wordfreq
+	* outline
     * getheader
 * Some examples
     * Word count
@@ -85,6 +99,13 @@ Unique words can also be calculated using `sort` and `uniq`:
 ```
 makewords ch01.txt ch02.txt ch03.txt | sort | uniq | wc -l
 ```
+
+To get the ten most used words in a set of files:
+
+```
+wordfreq ch01.txt ch02.txt ch03.txt | head
+```
+
 
 ## Creating an index
 
