@@ -70,7 +70,7 @@ This script prints a markdown-style list with all the headers in a file. Running
     * yaml / rmyaml
     * makewords / words
     * wordfreq
-	* outline
+    * outline
     * getheader
 * Some examples
     * Word count

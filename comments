@@ -4,6 +4,6 @@ if [ "$1" = "--lines" ] || [ "$1" = "-l" ]; then
 	shift
 	awk '/^@@ / {sub("^@@ ",""); print NR "\t" $0 }' "$@"
 else
-	grep -h '^@@ ' "$@" | sed -e 's/^@@ //g'
+	sed -n '/^@@ /s/^@@ //p' "$@"
 fi
 
