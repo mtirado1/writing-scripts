@@ -1,6 +1,6 @@
 #!/bin/sh
 # Word frequency analysis
-if [ "$1" = "-i" ]; then
+if [ "$1" = "-i" ] || [ "$1" = "--ignore" ]; then
 	ignore="$2"
 	shift 2
 	makewords "$@" | sort | grep -F -v -x -f "$ignore"
